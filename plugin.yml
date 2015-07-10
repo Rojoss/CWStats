@@ -1,0 +1,10 @@
+main : com.clashwars.cwstats.CWStats
+name: CWStats
+version: 0.1
+description: ClashWars Statistics plugin.
+depend: [CWCore,ClashWars]
+commands:
+  stats:
+    description: Main statistics command.
+    usage: /<command>
+    aliases: [stat,statistics]

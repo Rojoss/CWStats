@@ -1,0 +1,18 @@
+/bin
+/build
+/dist
+/target
+/manifest.mf
+
+# Intellij stuff
+*.ipr
+*.iws
+.idea/
+
+# Eclipse stuff
+/.classpath
+/.project
+/.settings
+
+# Maven stuff
+/build.xml
