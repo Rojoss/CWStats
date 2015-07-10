@@ -1,11 +1,12 @@
 package com.clashwars.cwstats.stats.display;
 
 
+import com.clashwars.clashwars.player.CWUser;
+import com.clashwars.cwcore.ItemMenu;
 import com.clashwars.cwcore.helpers.CWItem;
 import com.clashwars.cwcore.utils.CWUtil;
 import com.clashwars.cwstats.CWStats;
 import com.clashwars.cwstats.player.PlayerSettings;
-import com.clashwars.cwstats.util.ItemMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -255,13 +256,20 @@ public class PlayerMenu implements Listener {
 
             String name = CWUtil.stripAllColor(event.getMessage().trim());
             OfflinePlayer offlinePlayer = cws.getServer().getOfflinePlayer(name);
-            if (offlinePlayer == null || !offlinePlayer.hasPlayedBefore()) {
+            if (offlinePlayer == null) {
                 event.getPlayer().sendMessage(CWUtil.integrateColor("&cInvalid player specified!"));
                 event.getPlayer().sendMessage(CWUtil.integrateColor("&cReturning back to the menu..."));
                 nameInputs.remove(uuid);
             } else {
-                event.getPlayer().sendMessage(CWUtil.integrateColor("&aValid player specified!"));
-                event.getPlayer().sendMessage(CWUtil.integrateColor("&aReturning back to the menu..."));
+                CWUser user = cws.getCW().um.getUser(offlinePlayer.getUniqueId(), false);
+                if (user == null || user.getUserID() <= 0) {
+                    event.getPlayer().sendMessage(CWUtil.integrateColor("&cThe specified player has no statistics!"));
+                    event.getPlayer().sendMessage(CWUtil.integrateColor("&cReturning back to the menu..."));
+                    nameInputs.remove(uuid);
+                } else {
+                    event.getPlayer().sendMessage(CWUtil.integrateColor("&aValid player specified!"));
+                    event.getPlayer().sendMessage(CWUtil.integrateColor("&aReturning back to the menu..."));
+                }
                 nameInputs.put(uuid, name);
             }
 

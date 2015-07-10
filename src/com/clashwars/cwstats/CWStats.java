@@ -2,12 +2,12 @@ package com.clashwars.cwstats;
 
 import com.clashwars.clashwars.ClashWars;
 import com.clashwars.cwcore.CWCore;
+import com.clashwars.cwcore.debug.Debug;
 import com.clashwars.cwcore.mysql.MySQL;
 import com.clashwars.cwstats.commands.Commands;
 import com.clashwars.cwstats.config.PlayerSettingsCfg;
 import com.clashwars.cwstats.config.PluginCfg;
 import com.clashwars.cwstats.config.StatsCfg;
-import com.clashwars.cwstats.listeners.MainEvents;
 import com.clashwars.cwstats.stats.DataManager;
 import com.clashwars.cwstats.stats.StatsManager;
 import com.google.gson.Gson;
@@ -105,7 +105,6 @@ public class CWStats extends JavaPlugin {
 
     private void registerEvents() {
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new MainEvents(this), this);
 
         pm.registerEvents(sm.filterMenu, this);
         pm.registerEvents(sm.statsMenu, this);

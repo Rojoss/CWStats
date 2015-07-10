@@ -1,11 +1,11 @@
 package com.clashwars.cwstats.stats.display;
 
+import com.clashwars.cwcore.ItemMenu;
 import com.clashwars.cwcore.helpers.CWItem;
 import com.clashwars.cwcore.utils.CWUtil;
 import com.clashwars.cwstats.CWStats;
 import com.clashwars.cwstats.player.PlayerSettings;
 import com.clashwars.cwstats.stats.internal.Game;
-import com.clashwars.cwstats.util.ItemMenu;
 import com.clashwars.cwstats.util.Util;
 import org.bukkit.Material;
 import org.bukkit.Sound;
