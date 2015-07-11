@@ -96,10 +96,15 @@ public class StatsManager {
                                     }
 
                                     //Player stats
+                                    int skippedStats = 0;
                                     if (cws.statsCfg.STATS != null && cws.statsCfg.STATS.size() > 0) {
                                         Map<UUID, StatsData> statDataMap = cws.statsCfg.getStats();
                                         for (Map.Entry<UUID, StatsData> entry : statDataMap.entrySet()) {
-                                            int playerID = cws.getCW().um.getUser(entry.getKey()).getCharID();
+                                            int playerID = cws.getCW().um.getUser(entry.getKey(), false).getCharID();
+                                            if (playerID <= 0) {
+                                                skippedStats++;
+                                                continue;
+                                            }
 
                                             HashMap<Integer, Float> statsMap = entry.getValue().getData();
                                             for (Map.Entry<Integer, Float> stat : statsMap.entrySet()) {
@@ -122,9 +127,8 @@ public class StatsManager {
                                     }
 
                                     cws.log("Inserted " + i + " stats in to the database for game " + gameID + "!");
+                                    cws.log("Skipped " + skippedStats + " stats!");
                                     statsSaved = true;
-
-                                    loadStats(); // Update the cached stats after new stats have been uploaded
                                 }
                             }
 
@@ -144,7 +148,7 @@ public class StatsManager {
                     cws.logError("&4&lFailed at saving statistics to the database!");
                 } else {
                     cws.log("&a&lStatistics from the previous game are uploaded!");
-                    clearLocalStats();
+                    loadStats();
                 }
             }
         }.runTaskAsynchronously(cws);
