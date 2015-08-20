@@ -32,6 +32,7 @@ public enum StatType {
     CHICKEN_PICKS(39),
     SILVERFISH_PICKS(85),
     IRONGOLEM_PICKS(86),
+    SLIME_PICKS(87),
     MONSTER_MOST_PICKED_CLASS(40), //Calculated
     MONSTER_TOTAL_PICKS(41), //Calculated
 
